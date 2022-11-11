@@ -1,0 +1,6 @@
+multiprocess
+numpy
+requests
+matplotlib
+jupyter
+viztracer
