@@ -18,11 +18,13 @@ def is_notebook():
 # Jupyter ha un problema con il multiprocessing, causato dalla serializzazione dei dati
 # per risolvere il problema si può usare il modulo multiprocess che usa il modulo dill anziché pickle per serializzare
 # https://stackoverflow.com/questions/41385708/multiprocessing-example-giving-attributeerror
-if is_notebook():
-    import multiprocess as multiprocessing
-    from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
-else:
-    import multiprocessing
+# if is_notebook():
+#     import multiprocess as multiprocessing
+#     from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+# else:
+#     import multiprocessing
+
+import multiprocessing
 
 import numpy as np
 from functools import wraps
@@ -34,7 +36,7 @@ import os
 os.makedirs('reports', exist_ok=True)  # crea la cartella per i report se non esiste
 
 
-def remove_special_characters(text):
+def rimuovi_caratteri_speciali(text):
     return text.replace(' ', '_').replace('/', '_')
 
 
@@ -111,7 +113,7 @@ def visualizza_grafico(risultati, titolo, salva_grafico=False):
 
     if salva_grafico is True:
         fig1 = plt.gcf()
-        file_name = f'reports/{remove_special_characters(titolo)}.png'
+        file_name = f'reports/{rimuovi_caratteri_speciali(titolo)}.png'
         fig1.savefig(file_name, format='png')
         print('file saved', file_name)
 
@@ -154,7 +156,7 @@ def visualizza_grafico_combinato(risultati2, titolo, salva_grafico=False):
 
     if salva_grafico is True:
         fig1 = plt.gcf()
-        file_name = f'reports/{remove_special_characters(titolo)}.png'
+        file_name = f'reports/{rimuovi_caratteri_speciali(titolo)}.png'
         fig1.savefig(file_name, format='png')
         print('file saved', file_name)
 
